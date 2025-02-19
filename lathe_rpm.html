@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>車削加工參數計算</title>
+  <link rel="stylesheet" href="ui.css">
+  <style>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>車削加工參數計算</h1>
+    <form id="calcForm">
+      <!-- 輸入欄位 -->
+      <div class="input-group">
+        <label for="diameter">切削直徑 D (mm)：</label>
+        <input type="number" id="diameter" step="0.1" required>
+      </div>
+
+      <div class="input-group">
+        <label for="spindleSpeed">主軸轉速 S (rpm)：</label>
+        <input type="number" id="spindleSpeed" required>
+      </div>
+
+      <div class="input-group">
+        <label for="feedPerRev">每轉進給 F (mm/rev)：</label>
+        <input type="number" id="feedPerRev" step="0.001" required>
+      </div>
+
+      <div class="input-group">
+        <label for="cutDepth">切削深度 AP (mm)：</label>
+        <input type="number" id="cutDepth" step="0.01" required>
+      </div>
+
+      <div class="input-group">
+        <label for="length">加工長 L (mm)：</label>
+        <input type="number" id="length" step="0.1" required>
+      </div>
+
+      <!-- 刀鼻R角 下拉選單 -->
+      <div class="input-group">
+        <label for="noseRadius">刀鼻 R角：</label>
+        <select id="noseRadius">
+          <option value="0.2">0.2 mm</option>
+          <option value="0.4">0.4 mm</option>
+          <option value="0.8" selected>0.8 mm</option>
+          <option value="1.2">1.2 mm</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button type="button" onclick="calculate()">計算</button>
+      </div>
+    </form>
+
+    <div class="result" id="result">
+      <h2>計算結果</h2>
+      <p>切削速度 \( V_C \)：<span id="VC"></span> m/min</p>
+      <p>週進給速率 \( V_f \)：<span id="Vf"></span> mm/min</p>
+      <p>預估表面粗糙度 \( DM1 \)：<span id="DM1"></span> mm (約 <span id="DM1um"></span> μm)</p>
+      <p>加工時間 \( T \)：<span id="T"></span> 分鐘</p>
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      // 取得輸入數值
+      const D = parseFloat(document.getElementById("diameter").value);
+      const N = parseFloat(document.getElementById("spindleSpeed").value);
+      const F = parseFloat(document.getElementById("feedPerRev").value);
+      const AP = parseFloat(document.getElementById("cutDepth").value);
+      const L = parseFloat(document.getElementById("length").value);
+      const R = parseFloat(document.getElementById("noseRadius").value); // 刀鼻R角從下拉選單取得
+      
+      // 1. 計算切削速度 VC = (π * D * N) / 1000 (m/min)
+      const VC = (Math.PI * D * N) / 1000;
+      
+      // 2. 計算週進給速率 Vf = F * N (mm/min)
+      const Vf = F * N;
+      
+      // 3. 預估表面粗糙度 DM1 = F^2 / (8 * R) (mm)
+      const DM1 = (F * F) / (8 * R);
+      // 換算成 μm
+      const DM1um = DM1 * 1000;
+      
+      // 4. 加工時間 T = L / Vf (分鐘)
+      const T = L / Vf;
+      
+      // 顯示結果
+      document.getElementById("VC").textContent = VC.toFixed(2);
+      document.getElementById("Vf").textContent = Vf.toFixed(2);
+      document.getElementById("DM1").textContent = DM1.toFixed(4);
+      document.getElementById("DM1um").textContent = DM1um.toFixed(2);
+      document.getElementById("T").textContent = T.toFixed(2);
+    }
+  </script>
+</body>
+</html>
