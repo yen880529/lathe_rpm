@@ -8,16 +8,6 @@ body {
   background-color: #f0f0f0;
 }
 
-.container {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-}
-
 h1 {
   font-size: 24px;
   color: #333;
@@ -133,18 +123,3 @@ select:focus {
   outline: none;
 }
 
-/* 美化選單的箭頭 */
-.input-group {
-  position: relative;
-}
-
-.input-group::after {
-  content: "▼";
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  font-size: 14px;
-  color: #666;
-  pointer-events: none; /* 讓箭頭不影響點擊 */
-}
