@@ -1,17 +1,26 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
+  max-width: 480px; /* 限制最大寬度，適合手機 */
+  width: 100%; /* 讓內容自適應手機寬度 */
+  margin: 0 auto; /* 讓內容在桌機上也置中 */
+  padding: 10px;
+  box-sizing: border-box;
 }
+input, button, textarea, select {
+  max-width: 100%; /* 限制最大寬度 */
+}
+
 
 h1 {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
+  text-align: center; /* 讓文字水平置中 */
 }
 
 p {
