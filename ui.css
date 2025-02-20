@@ -89,35 +89,15 @@ button:active {
   transform: translateY(1px);
 }
 
-textarea {
-  width: 100%;
-  height: auto; /* 自动高度 */
-  min-height: 150px; /* 设置最小高度 */
-  max-height: 400px; /* 设置最大高度 */
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #f9f9f9;
-  box-sizing: border-box;
-  resize: both; /* 允许用户调整大小 */
-}
-
-
-textarea:focus {
-  background-color: #fff;
-  border-color: #007bff;
-}
-
-
 select {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   border-radius: 8px;
   font-size: 16px;
-  background-color: #f9f9f9;
-  appearance: none; /* 隱藏系統預設樣式 */
+  background-color: #222;
+  color: #fff;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
@@ -125,10 +105,10 @@ select {
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* 當選擇框被點擊時的樣式 */
 select:focus {
-  border-color: #007bff;
-  background-color: #fff;
+  border-color: #00ccff;
+  background-color: #333;
   outline: none;
 }
+
 
